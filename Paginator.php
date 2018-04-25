@@ -176,9 +176,9 @@ class Paginator
 
     public function getRowPosition($where, $bind = null) {
         //TODO: search in array
-        if (is_array($this->_db)) return null;
+        if (is_array($this->db)) return null;
 
-        $select = $this->_db->select()->from(['s4y_paginator' =>
+        $select = $this->db->select()->from(['s4y_paginator' =>
             new \Zend_Db_Expr('(SELECT *, @rownum := @rownum + 1 AS s4y_paginator_pos FROM ('
                 .$this->sql.
                 ') s4y_paginator_t JOIN (SELECT @rownum := 0) s4y_paginator_c)')
@@ -192,7 +192,7 @@ class Paginator
             $select->where($where, $bind);
         }
 
-        return $this->_db->fetchOne($select);
+        return $this->db->fetchOne($select);
     }
 
     public function getRowPage($where, $bind = null) {
