@@ -1,0 +1,20 @@
+{
+    "name": "s4y/paginator",
+    "description": "Simple paginator for Zend_Db and arrays",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Puchkin Dmitriy",
+            "email": "pdima88@mail.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "s4y\\": "/"
+        }
+    } 
+}
