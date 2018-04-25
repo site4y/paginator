@@ -35,6 +35,7 @@ class Paginator
         $this->db = $db;
         $this->sql = $sql;
         $this->_countPerPage = $countPerPage;
+        $this->_page = $page;
     }
 
     static function fromArray($data, $countPerPage = 20, $page = 1)
