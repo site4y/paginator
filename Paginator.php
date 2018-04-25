@@ -62,7 +62,7 @@ class Paginator
                 $this->_count = (int)$this->db->fetchOne(
                     $this->db->select()->from([
                     's4y_paginator_select' =>
-                        new \Zend_Db_Expr($this->sql)
+                        new \Zend_Db_Expr('('.$this->sql.')')
                 ], ['rowcount' => 'COUNT(*)']));
             }
             $this->_pageCount = false;
@@ -178,9 +178,9 @@ class Paginator
         if (is_array($this->_db)) return null;
 
         $select = $this->_db->select()->from(['s4y_paginator' =>
-            new \Zend_Db_Expr('SELECT *, @rownum := @rownum + 1 AS s4y_paginator_pos FROM ('
+            new \Zend_Db_Expr('(SELECT *, @rownum := @rownum + 1 AS s4y_paginator_pos FROM ('
                 .$this->sql.
-                ') s4y_paginator_t JOIN (SELECT @rownum := 0) s4y_paginator_c')
+                ') s4y_paginator_t JOIN (SELECT @rownum := 0) s4y_paginator_c)')
         ], ['s4y_paginator_pos']);
 
         if (is_array($where)) {
